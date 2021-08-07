@@ -1,0 +1,60 @@
+// naive approach
+class Solution
+{
+  public:
+    long long int count( int S[], int m, int n )
+    {
+        //corner case
+        if(n==0) 
+        {
+            return 1; // there is a combination and dont take any coins now
+        }
+        if(m==0)
+        {
+            return 0; // there aren't any coins left so we can't make the sum
+        }
+       
+        //code here.
+        int res=count(S,m-1,n);
+        if(S[m-1]<=n)
+        {
+            res += count(S,m,n-S[m-1]);
+        }
+      
+      return res;        
+    }
+};
+
+//memorization approach
+
+class Solution
+{
+  public:
+    long long int count( int S[], int n, int sum )
+    {
+        //creating a DP table
+        long long int dp[sum+1][n+1];
+        for(long long int i=0; i<=n; i++)
+        {
+            dp[0][i]=1;//when the sum is zero then we can have one ways
+        }
+        for(long long int j=1; j<=sum; j++)
+        {
+            dp[j][0]=0;// when there is no coin then ways will be zero
+        }
+        
+        for(long long int i=1; i<=sum; i++)
+        {
+            for(long long int j=1; j<=n; j++)
+            {
+                dp[i][j]=dp[i][j-1];
+                if(S[j-1]<=i)
+                {
+                   dp[i][j]+=dp[i-S[j-1]][j];
+                }
+            }
+        }
+       
+      return dp[sum][n];        
+    }
+};
