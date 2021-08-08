@@ -1,0 +1,124 @@
+//naive approach 
+TC O(mn)
+
+double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+{
+    // Your code goes here
+    int i=0;
+    int j=0;
+    int count;
+    int m =array1.size();
+    int n =array2.size();
+    int m1=-1,m2=-1;
+    
+    if((m+n)%2==1)
+    {
+        for(count=0; count<=(m+n)/2; count++)
+        {
+            if(i!=m && j!=n)
+            {
+                m1=(array1[i]>array2[j])?array2[j++]:array1[i++];
+            }
+            else if(i<n)
+            {
+                m1=array1[i++];
+            }
+            else
+            {
+                m1=array2[j++];
+            }
+            
+       
+        }
+        
+       return m1;    
+    }
+    else
+    {
+        for(count=0; count<=(m+n)/2; count++)
+        {
+            m2=m1;
+           if(i!=m && j!=n)
+            {
+                m1=(array1[i]>array2[j])?array2[j++]:array1[i++];
+            }
+            else if(i<n)
+            {
+                m1=array1[i++];
+            }
+            else
+            {
+                m1=array2[j++];
+            }
+        }
+       
+       return (m1+m2)/2; 
+    }
+    
+    
+}
+
+//better approach
+TC-nlog(n)
+
+double solution(int array3[],int n)
+{
+    if(n%2==0)
+    {
+        int z=n/2;
+        int e = array3[z];
+        int f = array3[z-1];
+        return (e+f)/2.0;
+    }
+    else
+    {
+        int z=round(n/2);
+        return array3[z];
+    }
+}
+
+double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+{
+    // Your code goes here
+    int i = array1.size();
+    int j = array2.size();
+   
+    int array3[i+j];
+    int l = i+j;
+    for(int k=0; k<i; k++)
+    {
+       array3[k]=array1[k];
+    }
+    int a=0;
+    for(int k=i; k<l; k++)
+    {
+        array3[k]=array2[a++];
+    }
+    sort(array3, array3+l);
+    
+    return solution(array3, l);
+    
+    
+}
+
+// { Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m,n;
+        cin>>m;
+        vector<int> array1(m);
+        for (int i = 0; i < m; ++i)
+            cin>>array1[i];
+        cin>>n;
+        vector<int> array2(n);
+        for (int i = 0; i < n; ++i)
+            cin>>array2[i];
+        cout<<MedianOfArrays(array1, array2)<<endl;
+    }
+    return 0; 
+}
