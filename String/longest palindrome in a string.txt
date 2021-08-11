@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    
+   
+    string longestPalin (string S) 
+    {
+        int n = S.size();
+        string res="";
+        for(int i=0; i<n; i++)
+        {
+            string ans="";
+            int j;
+            j=i;
+            //we take a smaller value
+            while(j<n && S[i]==S[j])
+            {
+                ans+=S[j];
+                j++;
+            }
+            //after here we go two way side to see the largest possible palindrome
+            int k = i-1;
+            while(k>=0 && j<n && S[k]==S[j])
+            {
+                ans=S[k]+ans+S[j];
+                k--;
+                j++;
+            }
+            if(ans.size()>res.size())
+            res=ans;
+            
+        }
+        
+      return res;    
+    }
+};
