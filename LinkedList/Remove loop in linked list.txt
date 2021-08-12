@@ -1,0 +1,46 @@
+//first approach would be to use the hashing techinque and find the hash present in the linkedlist or not
+
+//another approach using flyod algorithm
+
+class Solution
+{
+    public:
+    //Function to remove a loop in the linked list.
+    void removeLoop(Node* head)
+    {
+        Node* fast=head, *slow=head;
+        
+        while(fast!=NULL && slow!=NULL && fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+            
+            if(fast==slow)
+            {
+                break;
+            }
+        }
+        if(slow==head)//condition when the loop is at the starting index
+        {
+            while(fast->next!=slow)
+            {
+                fast=fast->next;
+            }
+            fast->next=NULL;
+        }
+        else if(slow==fast)//simple case when the slow is equal to fast so we
+        //change at the next of fast pointer
+        {
+            slow=head;
+            while(fast->next!=slow->next)
+            {
+                fast=fast->next;
+                slow=slow->next;
+            }
+            
+            fast->next=NULL;
+            
+        }
+        
+    }
+};
