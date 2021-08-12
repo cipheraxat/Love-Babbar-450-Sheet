@@ -1,0 +1,59 @@
+//iterative way
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        // code here
+        // return head of reversed list
+        Node *curr=head;
+        Node *prev=NULL, *Next;
+        
+        if(head->next==NULL)
+        {
+            return head;
+        }
+        
+        while(curr)
+        {
+            Next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = Next;
+        }
+        
+       return prev;    
+    }
+    
+};
+//recursive way
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        Node *curr=head;
+        Node *prev=NULL, *Next;
+        //divide it into two parts head and rest
+        //reverse the rest
+        //link the rest with the first
+        //change the head
+        
+        if(head==NULL || head->next==NULL)
+        {
+            return head;
+        }
+        
+        Node *newhead = reverseList(head->next);//reverse the list
+        head->next->next=head; //link the rest with the first
+        head->next=NULL; //change the head
+        
+        return newhead;
+        
+        
+            
+    }
+    
+};    
