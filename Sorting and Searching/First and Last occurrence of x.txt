@@ -1,0 +1,47 @@
+vector<int> find(int arr[], int n , int x )
+{
+    // code here
+    int f=-1, s=-1;
+    int l=0,m,r=n-1;
+    
+    vector<int> result;
+    while(l<=r)//for first number
+    {
+        m=(l+r)/2;
+        if(arr[m]==x)
+        {
+            f=m;
+            r=m-1;
+        }
+        else if(arr[m]<x)
+        {
+            l=m+1;
+        }
+        else
+        {
+            r=m-1;
+        }
+    }
+    l=0,r=n-1;
+    while(l<=r)
+    {
+        m=(l+r)/2;
+        if(arr[m]==x)
+        {
+            s=m;
+            l=m+1;
+        }
+        else if(arr[m]<x)
+        {
+            l=m+1;
+        }
+        else
+        {
+            r=m-1;
+        }
+    }
+    result.push_back(f);
+    result.push_back(s);
+    
+    return result;
+}
