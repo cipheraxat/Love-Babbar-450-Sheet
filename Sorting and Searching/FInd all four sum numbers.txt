@@ -1,0 +1,75 @@
+//naive
+
+void findFourElements(int A[], int n, int X)
+{
+     
+// Fix the first element and find other three
+for (int i = 0; i < n - 3; i++)
+{
+    // Fix the second element and find other two
+    for (int j = i + 1; j < n - 2; j++)
+    {
+         
+        // Fix the third element and find the fourth
+        for (int k = j + 1; k < n - 1; k++)
+        {
+            // find the fourth
+            for (int l = k + 1; l < n; l++)
+            if (A[i] + A[j] + A[k] + A[l] == X)
+                cout << A[i] <<", " << A[j]
+                     << ", " << A[k] << ", " << A[l];
+        }
+    }
+}
+}
+ 
+
+// using hashing which stores the value of pairs
+void findfourelement(int arr[], int n, int x)
+{
+  unordered_map<int , pair<int, int>> mp;
+  for(int i=0; i<n-1; i++)
+  {
+    for(int j=i+1; j<n; j++)
+    { 
+      mp[arr[i] + arr[j] = {i,j};
+    }
+  }
+
+  for(int i=0; i<n; i++)
+  {
+   for(int j=i+1; i<n; j++)
+   {
+     int sum = arr[i]+arr[j];
+     if(mp.find(x - sum)!=mp.end())
+     {
+        pair<int , int> p = mp[X-sum];
+        if(p.first!=i && p.second!=j && p.second!=i && p.first!=j)
+        {
+         cout<<arr[i]<<arr[j]<<arr[p.first]<<arr[p.second];
+        }
+     }
+   }
+  }
+return;
+}
+
+O(n^2)
+O(n(n-1)) because all n*(n-1) pairs are stored in hash map so the 
+space required is O(n^2) 
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
