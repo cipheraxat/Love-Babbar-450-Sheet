@@ -1,0 +1,26 @@
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    vector<int> res;
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        Node * temp = q.front();
+        q.pop();
+        res.push_back(temp->data);
+        if(temp->right!=NULL)
+        {
+            q.push(temp->right);
+        }
+        if(temp->left!=NULL)
+        {
+            q.push(temp->left);
+        }
+    }
+    reverse(res.begin(), res.end());
+    
+  return res;    
+}
+O(n) - TC
+O(n) - SC
