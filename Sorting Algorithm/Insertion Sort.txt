@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void insertionsort(vector<int> &arr, int n)
+{ 
+    int i,j, key;
+    for(int i=0; i<n; i++)
+    {
+        key=arr[i];
+        j=i-1;
+        while(j>=0 and arr[j]>key)
+        {
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }
+     
+}
+
+int main()
+{
+    vector<int> arr;
+    arr.push_back(1);
+    arr.push_back(7);
+    arr.push_back(3);
+    arr.push_back(5);
+    arr.push_back(4);
+    insertionsort(arr, 5);
+    
+    for(int i=0; i<5; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}
