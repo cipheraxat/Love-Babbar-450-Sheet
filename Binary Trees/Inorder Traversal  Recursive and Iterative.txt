@@ -1,0 +1,33 @@
+//recursive
+void inorder(Node* root)
+{
+    if(root==NULL)
+    {
+      return;
+    }
+    inorder(root->left);
+    cout<<root->data;
+    inorder(root->right);
+}
+//iterative
+
+void inorderIterative(Node* root)
+{
+    stack<Node*> stack;
+    Node* curr=root;
+    
+    while(!stack.empty() || curr!=nullptr)
+    {
+     if(curr!=nullptr)
+     {
+       stack.push(curr);
+       curr=curr->left; 
+     }
+     else
+     {
+        curr=stack.top();
+        stack.pop();
+        cout<<curr->data;
+        curr=curr->right;
+     }
+}
