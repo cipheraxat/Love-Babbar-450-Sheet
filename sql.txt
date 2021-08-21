@@ -1,0 +1,18 @@
+select name,salary from employee e1 where
+N-1 = (select count(distinct salary) from employee where e2.salary>e1.salary);
+
+select * from employee where empname like 'A%';
+
+(select * from student1) intersect (select * from student2);//common records
+
+select * from table where column_name%2=0; // for even numbered for alternate records
+select * from table where columm_name%2=1; // for odd numbered
+
+select distinct column1, column2 from table // finding new records
+
+
+select right(studentname, 5) as studentname from table //fetch first 5 characters of the string
+
+Like operator is used for pattern matching
+
+
